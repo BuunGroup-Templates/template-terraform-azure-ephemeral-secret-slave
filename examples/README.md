@@ -21,7 +21,7 @@ Terraform will automatically use this value for the `github_pat` variable.
 
 ```hcl
 module "ephemeral_secret" {
-  source = "git::https://${var.github_pat}@github.com/BuunGroup-Templates/template-terraform-azure-ephemeral-secret-slave.git//?ref=main"
+  source = "git::https://github.com/BuunGroup-Templates/template-terraform-azure-ephemeral-secret-slave.git//?ref=main"
 
   key_vault = {
     name                = "my-keyvault"

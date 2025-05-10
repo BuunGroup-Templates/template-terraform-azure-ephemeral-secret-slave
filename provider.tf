@@ -12,18 +12,16 @@
 #                                                               #
 #################################################################
 
-module "ephemeral_secret_single" {
-  source = "git::https://github.com/BuunGroup-Templates/template-terraform-azure-ephemeral-secret-slave.git//?ref=main"
-
-  key_vault = {
-    name                = "my-keyvault"
-    resource_group_name = "my-resource-group"
-  }
-
-  secrets = {
-    my_secret = {
-      name         = "my-secret"
-      version      = "1.0.0"
+terraform {
+  required_version = ">= 1.11.4"
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 4.28"
     }
   }
 }
+
+provider "azurerm" {
+  features {}
+} 

@@ -13,7 +13,7 @@
 #################################################################
 
 module "ephemeral_secret_multiple" {
-  source = "git::https://${var.github_pat}@github.com/BuunGroup-Templates/template-terraform-azure-ephemeral-secret-slave.git//?ref=main"
+  source = "git::https://github.com/BuunGroup-Templates/template-terraform-azure-ephemeral-secret-slave.git//?ref=main"
 
   key_vault = {
     name                = "my-keyvault"
