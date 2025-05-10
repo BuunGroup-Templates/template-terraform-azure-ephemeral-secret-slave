@@ -11,9 +11,3 @@
 # https://buungroup.com                                         #
 #                                                               #
 #################################################################
-
-output "secrets" {
-  description = "Map of all ephemeral azurerm_key_vault_secret resources, keyed by the secrets map keys. Consumers can access .value, .expiration_date, and .not_before_date from this map."
-  value       = ephemeral.azurerm_key_vault_secret.this
-  ephemeral   = true
-} 
