@@ -28,7 +28,6 @@ variable "secrets" {
   description = "Map of secrets to fetch from Key Vault"
   type = map(object({
     name         = string
-    key_vault_id = string
     version      = optional(string)
   }))
   validation {
