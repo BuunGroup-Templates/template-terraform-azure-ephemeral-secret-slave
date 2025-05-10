@@ -27,8 +27,8 @@ variable "key_vault" {
 variable "secrets" {
   description = "Map of secrets to fetch from Key Vault"
   type = map(object({
-    name         = string
-    version      = optional(string)
+    name    = string
+    version = optional(string)
   }))
   validation {
     condition     = length(var.secrets) > 0
