@@ -106,6 +106,36 @@ module "ephemeral_secret" {
 See [terraform-docs](https://github.com/terraform-docs/terraform-docs) output below for full details.
 
 <!-- BEGIN_TF_DOCS -->
+## Requirements
+
+No requirements.
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | n/a |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [azurerm_key_vault.key_vault](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_key_vault"></a> [key\_vault](#input\_key\_vault) | Key Vault configuration object. Must include name and resource\_group\_name. | <pre>object({<br/>    name                = string<br/>    resource_group_name = string<br/>  })</pre> | n/a | yes |
+| <a name="input_secrets"></a> [secrets](#input\_secrets) | Map of secrets to fetch from Key Vault | <pre>map(object({<br/>    name    = string<br/>    version = optional(string)<br/>  }))</pre> | n/a | yes |
+
+## Outputs
+
+No outputs.
 <!-- END_TF_DOCS -->
 
 ---
