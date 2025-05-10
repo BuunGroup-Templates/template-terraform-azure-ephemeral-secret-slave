@@ -12,21 +12,21 @@
 #                                                               #
 #################################################################
 
+module "ephemeral_secret_multiple" {
+  source = "git::https://${var.github_pat}@github.com/BuunGroup-Templates/template-terraform-azure-ephemeral-secret-slave.git//?ref=main"
 
-# Output variables needed by the main test file's provider block or run blocks.
-# output "client_id" {
-#   value = var.client_id
-# }
-# output "client_secret" {
-#   value = var.client_secret
-#   sensitive = true
-# }
-# output "tenant_id" {
-#   value = var.tenant_id
-# }
-# output "subscription_id" {
-#   value = var.subscription_id
-# }
-# output "test_location" {
-#   value = var.test_location
-# } 
+  key_vault = {
+    name                = "my-keyvault"
+    resource_group_name = "my-resource-group"
+  }
+
+  secrets = {
+    db_password = {
+      name         = "db-password"
+    }
+    api_key = {
+      name         = "api-key"
+      version      = "1.0.0"
+    }
+  }
+}

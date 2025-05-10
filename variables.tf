@@ -12,13 +12,27 @@
 #                                                               #
 #################################################################
 
-variable "greeting_prefix" {
-  description = "A prefix string to use in the hello world message."
-  type        = string
-  default     = "Hello"
-
+variable "key_vault" {
+  description = "Key Vault configuration object. Must include name and resource_group_name."
+  type = object({
+    name                = string
+    resource_group_name = string
+  })
   validation {
-    condition     = length(var.greeting_prefix) > 0
-    error_message = "The greeting_prefix must not be empty."
+    condition     = length(var.key_vault.name) > 0 && length(var.key_vault.resource_group_name) > 0
+    error_message = "Both name and resource_group_name must be provided in the key_vault object."
   }
-} 
+}
+
+variable "secrets" {
+  description = "Map of secrets to fetch from Key Vault"
+  type = map(object({
+    name         = string
+    key_vault_id = string
+    version      = optional(string)
+  }))
+  validation {
+    condition     = length(var.secrets) > 0
+    error_message = "At least one secret must be provided."
+  }
+}

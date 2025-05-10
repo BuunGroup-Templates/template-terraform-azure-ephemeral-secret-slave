@@ -12,13 +12,14 @@
 #                                                               #
 #################################################################
 
-resource "null_resource" "hello_world" {
-  triggers = {
-    # Trigger recreation when the prefix changes
-    prefix = var.greeting_prefix 
-  }
+data "azurerm_key_vault" "key_vault" {
+  name                = var.key_vault.name
+  resource_group_name = var.key_vault.resource_group_name
+}
 
-  provisioner "local-exec" {
-    command = "echo \"${var.greeting_prefix}, World!\""
-  }
+ephemeral "azurerm_key_vault_secret" "this" {
+  for_each     = var.secrets
+  name         = each.value.name
+  key_vault_id = data.azurerm_key_vault.key_vault.id
+  version      = try(each.value.version, null)
 } 

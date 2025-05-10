@@ -12,7 +12,18 @@
 #                                                               #
 #################################################################
 
-output "root_module_hello_output" {
-  description = "The hello_output value from the root module."
-  value       = module.example_root_module.hello_output
-} 
+module "ephemeral_secret_single" {
+  source = "git::https://${var.github_pat}@github.com/BuunGroup-Templates/template-terraform-azure-ephemeral-secret-slave.git//?ref=main"
+
+  key_vault = {
+    name                = "my-keyvault"
+    resource_group_name = "my-resource-group"
+  }
+
+  secrets = {
+    my_secret = {
+      name         = "my-secret"
+      version      = "1.0.0"
+    }
+  }
+}
